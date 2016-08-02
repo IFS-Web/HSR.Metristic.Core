@@ -3,7 +3,6 @@
 var gulp = require('gulp'),
 	nodemon = require('gulp-nodemon'),
 	ts = require('gulp-typescript'),
-	livereload = require('gulp-livereload'),
 	sass = require('gulp-sass'),
 	sourcemaps = require('gulp-sourcemaps');
 
@@ -42,7 +41,7 @@ gulp.task('watch', function() {
 
 	gulp.watch(CONFIGURATION.sourceDirectory+'/**/*.ts', ['typescript']);
 	gulp.watch(CONFIGURATION.sourceDirectoryAssets+'/**/*.scss', ['sass']);
-	gulp.watch([CONFIGURATION.sourceDirectoryAssets+'/images/*', CONFIGURATION.sourceDirectory+'/views/**/*'], ['deploy']);
+	gulp.watch([CONFIGURATION.sourceDirectoryAssets+'/images/**/*', CONFIGURATION.sourceDirectoryAssets+'/libraries/**/*', CONFIGURATION.sourceDirectory+'/views/**/*'], ['deploy']);
 });
 
 gulp.task('serve', ['typescript', 'sass', 'deploy', 'watch'], function () {
@@ -58,7 +57,8 @@ gulp.task('deploy', [], function() {
 	console.log('Deloying assets and views');
 
 	return gulp.src([
-			CONFIGURATION.sourceDirectoryAssets+'/images/*',
+			CONFIGURATION.sourceDirectoryAssets+'/libraries/**/*',
+			CONFIGURATION.sourceDirectoryAssets+'/images/**/*',
 			CONFIGURATION.sourceDirectory+'/views/**/*'
 		],{
 			base: CONFIGURATION.sourceDirectory

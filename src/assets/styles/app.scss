@@ -8,10 +8,7 @@ html, body {
 	width: 100%;
 }
 
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.2rem;
-}
+body {}
 
 
 h1 {
@@ -20,4 +17,16 @@ h1 {
 	background: linear-gradient(rgb(50,50,50), black);
 	color: white;
 	border-bottom: 3px solid teal;
+}
+
+h1 > a {
+	color: inherit;
+	&:hover {
+		text-decoration: inherit;
+		color: inherit;
+	}
+}
+
+main {
+	padding: 0.5em;
 }
