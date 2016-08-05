@@ -3,19 +3,21 @@ var FS = require('fs');
 var Handlebars = require('handlebars');
 
 import {Check} from "./check";
+import {Report} from "./report";
+import {HtmlReport} from "./html-report";
 
 
 export class StructureMetric implements Check {
 	constructor() {}
 
-	private reportTemplate = `<header><h2>File structure</h2></header>
-<ul>
+	private reportTemplate = `<ul>
 	<li>{{counts.numberOfDirectories}} directories</li>
 	<li>{{counts.numberOfFiles}} files</li>
 </ul>
 {{> directoryPartial structure=structure}}`;
 
-	private directoryPartial = `<span>{{name}}</span>
+	private partials: {[name:string]:string} = {
+		directoryPartial: `<span>{{name}}</span>
 <ul class="structure">
 	{{#each structure.directories}}
 	<li class="empty">
@@ -31,9 +33,10 @@ export class StructureMetric implements Check {
 		{{this}}
 	</li>
 	{{/each}}
-</ul>`;
+</ul>`
+};
 
-	public execute(directory: string, callback: (report: string) => {}): void {
+	public execute(directory: string, callback: (report: Report) => {}): void {
 		let statistics: any = {
 			structure: {},
 			counts: {
@@ -42,10 +45,7 @@ export class StructureMetric implements Check {
 			}
 		};
 		StructureMetric.walkStructure(directory, statistics.structure, statistics.counts);
-		Handlebars.registerPartial('directoryPartial', this.directoryPartial);
-		let renderer: (data: any) => string = Handlebars.compile(this.reportTemplate);
-		let report = renderer(statistics);
-		callback(report);
+		callback(new HtmlReport('File structure', this.reportTemplate, this.partials, statistics));
 	};
 
 	protected static walkStructure(path, structure, counts: any): void {
