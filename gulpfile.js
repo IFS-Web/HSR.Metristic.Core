@@ -58,6 +58,7 @@ gulp.task('deploy', [], function() {
 
 	return gulp.src([
 			CONFIGURATION.sourceDirectoryAssets+'/libraries/**/*',
+			CONFIGURATION.sourceDirectoryAssets+'/images/*',
 			CONFIGURATION.sourceDirectoryAssets+'/images/**/*',
 			CONFIGURATION.sourceDirectory+'/views/**/*'
 		],{

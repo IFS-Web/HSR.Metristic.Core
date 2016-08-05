@@ -7,6 +7,10 @@ let fs = require('fs');
 let formidable = require('formidable');
 let unzip = require('unzip');
 let uuid = require('node-uuid');
+let rmdir = require('rmdir');
+
+import {CheckManager} from "./domain/model/check-manager";
+import {StructureMetric} from "./domain/model/structure-metric";
 
 
 const HANDLEBARS_CONFIGURATION = {
@@ -42,12 +46,16 @@ app.post('/upload', (request, response) => {
 			let unziper = unzip.Extract({ path: targetDirectory });
 			fs.createReadStream(file['path']).pipe(unziper);
 			unziper.on('close', () => {
-				// (new CheckManager(targetDirectory)).execute();
-				/*fs.readdir(targetDirectory, (error, fileList) => {
-					console.log(fileList);
-				});*/
+				let manager: CheckManager = new CheckManager(targetDirectory);
+				manager.execute([new StructureMetric()], (reports: string[]) => {
+					response.render('upload', {
+						name: file['name'],
+						size: file['size']/1000+'kb',
+						reports: reports
+					});
+					rmdir(targetDirectory);
+				});
 			});
-			response.render('upload', { name: file['name'], size: file['size']/1000+'kb' });
 		} else {
 			response.status(400).send(`${file['type']} is not an allowed file format. Only zip is allowed!`);
 		}

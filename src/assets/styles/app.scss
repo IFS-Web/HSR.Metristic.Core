@@ -30,3 +30,31 @@ h1 > a {
 main {
 	padding: 0.5em;
 }
+
+.icon {
+	height: 2em;
+	width: auto;
+}
+
+ul {
+	padding-left: 1em;
+}
+li.empty {
+	list-style-type: none;
+}
+
+.structure {
+	margin-bottom: 0em;
+
+	ul ul {
+		padding-left: 2.5em;
+	}
+	li li {
+		border-left: 1px solid black;
+		padding-top: 0.5em;
+
+		&:before {
+			content: "⏤"
+		}
+	}
+}
