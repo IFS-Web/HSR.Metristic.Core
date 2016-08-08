@@ -1,15 +1,17 @@
 import {Check} from './check';
 import {Report} from "./report";
+import {Profile} from "./Profile";
 
 
 export class CheckManager {
 	constructor(private directory: string) {}
 
-	public execute(checks: Check[], callback: (reports: Report[]) => void) {
+	public execute(profile: Profile, callback: (reports: Report[]) => void) {
 		let reports: Report[] = [];
-		let waitForChecksToFinish: number = checks.length;
+		let waitForChecksToFinish: number = profile.checks.length;
 
-		checks.forEach((check) => {
+		profile.checks.forEach((checkConstructor) => {
+			let check: Check = new checkConstructor();
 			check.execute(this.directory, (report: Report) => {
 				reports.push(report);
 				waitForChecksToFinish--;

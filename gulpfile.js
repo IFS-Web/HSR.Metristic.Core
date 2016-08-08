@@ -14,11 +14,12 @@ var CONFIGURATION = {
 	deploymentDirectory: __dirname+'/dist/app',
 	deploymentDirectoryAssets: __dirname+'/dist/app/assets'
 };
+var STATIC_FILES = [ 'js', 'html', 'png', 'jpg', 'svg', 'css' ].map(
+	(format) => CONFIGURATION.sourceDirectory+'/**/*.'+format
+);
 
 
 gulp.task('typescript', function() {
-	console.log('Compiling typescript');
-
 	return gulp.src([CONFIGURATION.sourceDirectory+'/**/*.ts'])
 		.pipe(sourcemaps.init())
 		.pipe(ts({module: 'commonjs'})).js
@@ -27,8 +28,6 @@ gulp.task('typescript', function() {
 });
 
 gulp.task('sass', function () {
-	console.log('Compiling sass');
-
 	return gulp.src(CONFIGURATION.sourceDirectoryAssets+'/**/*.scss')
 		.pipe(sourcemaps.init())
 		.pipe(sass().on('error', sass.logError))
@@ -37,31 +36,20 @@ gulp.task('sass', function () {
 });
 
 gulp.task('watch', function() {
-	console.log('Watching typescript and sass files');
-
 	gulp.watch(CONFIGURATION.sourceDirectory+'/**/*.ts', ['typescript']);
 	gulp.watch(CONFIGURATION.sourceDirectoryAssets+'/**/*.scss', ['sass']);
-	gulp.watch([CONFIGURATION.sourceDirectoryAssets+'/images/**/*', CONFIGURATION.sourceDirectoryAssets+'/libraries/**/*', CONFIGURATION.sourceDirectory+'/views/**/*'], ['deploy']);
+	gulp.watch(STATIC_FILES, ['deploy static']);
 });
 
-gulp.task('serve', ['typescript', 'sass', 'deploy', 'watch'], function () {
-	console.log('Serving app');
-
+gulp.task('serve', ['typescript', 'sass', 'deploy static', 'watch'], function () {
 	nodemon({
 		script: CONFIGURATION.deploymentDirectory+'/index.js',
 		ext: 'js html'
 	})
 });
 
-gulp.task('deploy', [], function() {
-	console.log('Deloying assets and views');
-
-	return gulp.src([
-			CONFIGURATION.sourceDirectoryAssets+'/libraries/**/*',
-			CONFIGURATION.sourceDirectoryAssets+'/images/*',
-			CONFIGURATION.sourceDirectoryAssets+'/images/**/*',
-			CONFIGURATION.sourceDirectory+'/views/**/*'
-		],{
+gulp.task('deploy static', [], function() {
+	return gulp.src(STATIC_FILES, {
 			base: CONFIGURATION.sourceDirectory
 		})
 		.pipe(gulp.dest(CONFIGURATION.deploymentDirectory));

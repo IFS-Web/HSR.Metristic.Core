@@ -15,6 +15,15 @@
 			--></pre>
 		</p>
 	</div>
+	<div class="form-group">
+		<label for="profile">Profile</label>
+		<select id="profile" name="profile">
+			{{#each profiles as |profile profileId|}}
+			<option value="{{profileId}}" data-description="{{profile.description}}">{{profile.name}}</option>
+			{{/each}}
+		</select>
+		<p class="help-block" id="profile-help"></p>
+	</div>
 
 	<button type="submit" class="btn btn-default">Submit</button>
 </form>
