@@ -6,5 +6,5 @@ export interface Check {
 }
 
 export interface CheckConstructor {
-	new (): Check;
+	new (options: { [name: string]: any }): Check;
 }

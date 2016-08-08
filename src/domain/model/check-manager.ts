@@ -11,7 +11,7 @@ export class CheckManager {
 		let waitForChecksToFinish: number = profile.checks.length;
 
 		profile.checks.forEach((checkConstructor) => {
-			let check: Check = new checkConstructor();
+			let check: Check = new checkConstructor(profile.options || {});
 			check.execute(this.directory, (report: Report) => {
 				reports.push(report);
 				waitForChecksToFinish--;
