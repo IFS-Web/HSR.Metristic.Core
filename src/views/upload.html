@@ -1,8 +1,14 @@
 <section>
 	<header>
+		<button id="print">
+			<img class="icon large"  src="./assets/images/icon-printer.svg" alt="print" />
+		</button>
 		<h2>Upload</h2>
 	</header>
-	<p>{{name}} ({{size}})</p>
+	<ul>
+		<li>{{name}} ({{size}})</li>
+		<li>Check profile &quot;{{profile.name}}&quot;</li>
+	</ul>
 </section>
 
 {{#each reports}}

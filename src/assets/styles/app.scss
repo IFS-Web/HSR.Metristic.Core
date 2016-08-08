@@ -35,6 +35,12 @@ main {
 	height: 2em;
 	width: auto;
 }
+.icon.large {
+	height: 5em;
+}
+#print {
+	float: right;
+}
 
 ul {
 	padding-left: 1em;
@@ -57,4 +63,17 @@ li.empty {
 			content: "⏤"
 		}
 	}
+}
+
+
+@media print {
+	h1 {
+		color: black;
+		background: none;
+	}
+	a[href]:after {
+		// fix bootstrap added links
+		content: none;
+	}
+	#print { display: none; }
 }

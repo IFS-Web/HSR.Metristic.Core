@@ -45,6 +45,7 @@ export class UploadController {
 			response.render('upload', {
 				name: file[ 'name' ],
 				size: file[ 'size' ] / 1000 + 'kb',
+				profile: profile,
 				reports: reports.map((report) => { return { name: report.name, report: report.renderReport() }})
 			});
 			rmdir(targetDirectory);
