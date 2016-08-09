@@ -22,13 +22,16 @@
   },
   "homepage": "https://github.com/wasabideveloper/HSR.Metristic#readme",
   "dependencies": {
+    "detect-character-encoding": "^0.2.1",
     "express": "^4.14.0",
     "express-hbs": "^1.0.2",
     "formidable": "^1.0.17",
     "fs": "0.0.2",
+    "glob": "^7.0.5",
     "handlebars": "^4.0.5",
     "node-uuid": "^1.4.7",
     "path": "^0.12.7",
+    "request": "^2.74.0",
     "rmdir": "^1.2.0",
     "unzip": "^0.1.11"
   },
