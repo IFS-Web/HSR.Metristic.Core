@@ -45,8 +45,9 @@ main {
 ul {
 	padding-left: 1em;
 }
-li.empty {
+ul.empty, li.empty {
 	list-style-type: none;
+	padding-left: 0;
 }
 
 .structure {
@@ -63,6 +64,25 @@ li.empty {
 			content: "⏤"
 		}
 	}
+}
+
+.label {
+	display: inline-block;
+	padding: 0.5em;
+	margin: 0.25em;
+	border-radius: 0.25em;
+	background: silver;
+	color: black;
+}
+.label.error {
+	background: maroon;
+	color: white;
+}
+.label.warning {
+	background: darkorange;
+}
+.label.success {
+	background: seagreen;
 }
 
 
