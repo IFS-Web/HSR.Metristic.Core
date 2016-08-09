@@ -14,9 +14,9 @@ body {}
 h1 {
 	margin: 0;
 	padding: 0.5em;
-	background: linear-gradient(rgb(50,50,50), black);
+	background: #005291;
 	color: white;
-	border-bottom: 3px solid teal;
+	box-shadow: 0 0 0.5em black;
 }
 
 h1 > a {
@@ -43,15 +43,13 @@ main {
 }
 
 ul {
-	padding-left: 1em;
-}
-ul.empty, li.empty {
-	list-style-type: none;
 	padding-left: 0;
+	list-style-position: inside;
 }
 
 .structure {
-	margin-bottom: 0em;
+	margin-bottom: 0;
+	padding-left: 1em;
 
 	ul ul {
 		padding-left: 2.5em;

@@ -1,3 +1,9 @@
+<p class="lead">
+	Upload your project to analyse it and get metrics. Choose the profile that matches your project.
+	Choose a specific profile like "Module X, atestation 2" for atestation specific checks
+	or a general profile like "Web project" to check your code in general and get metrics.
+</p>
+
 <form method="post" action="/upload" enctype="multipart/form-data">
 	<div class="form-group">
 		<label for="archive">Project</label>
@@ -17,7 +23,7 @@
 	</div>
 	<div class="form-group">
 		<label for="profile">Profile</label>
-		<select id="profile" name="profile">
+		<select class="form-control" id="profile" name="profile">
 			{{#each profiles as |profile profileId|}}
 			<option value="{{profileId}}" data-description="{{profile.description}}">{{profile.name}}</option>
 			{{/each}}
