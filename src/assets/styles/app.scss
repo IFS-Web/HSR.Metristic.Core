@@ -83,6 +83,17 @@ ul {
 	background: seagreen;
 }
 
+.bar {
+	background: #005291;
+	display: inline-block;
+	height: 1em;
+}
+
+table.statistics {
+	th { min-width: 5em; }
+	th, td { padding: 0 0.5em; }
+}
+
 
 @media print {
 	h1 {
