@@ -64,6 +64,17 @@ ul {
 	}
 }
 
+/** plugin html metric */
+ul.hierarchical ul {
+	padding-left: 1.5em;
+}
+.domStructure ul {
+	font-size: 1.2rem;
+	line-height: 1.4rem;
+	list-style-type: none;
+}
+
+
 .label {
 	display: inline-block;
 	padding: 0.5em;
@@ -81,6 +92,17 @@ ul {
 }
 .label.success {
 	background: seagreen;
+}
+
+.bar {
+	background: #005291;
+	display: inline-block;
+	height: 1em;
+}
+
+table.statistics {
+	th { min-width: 5em; }
+	th, td { padding: 0 0.5em; }
 }
 
 
