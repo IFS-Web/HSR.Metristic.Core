@@ -31,6 +31,7 @@
     "glob": "^7.0.5",
     "handlebars": "^4.0.5",
     "htmlparser": "^1.7.7",
+    "jshint": "^2.9.2",
     "node-uuid": "^1.4.7",
     "path": "^0.12.7",
     "request": "^2.74.0",
