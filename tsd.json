@@ -19,6 +19,9 @@
     },
     "mime/mime.d.ts": {
       "commit": "ce71f72bcec4d09702b969d6743b52d9780a661f"
+    },
+    "jasmine/jasmine.d.ts": {
+      "commit": "e22f1e32bce0cbcec0c098e9dcdc18c2c84fdb9f"
     }
   }
 }

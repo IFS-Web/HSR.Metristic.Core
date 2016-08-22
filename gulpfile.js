@@ -4,7 +4,8 @@ var gulp = require('gulp'),
 	nodemon = require('gulp-nodemon'),
 	ts = require('gulp-typescript'),
 	sass = require('gulp-sass'),
-	sourcemaps = require('gulp-sourcemaps');
+	sourcemaps = require('gulp-sourcemaps'),
+	jasmine = require('gulp-jasmine');
 
 
 var CONFIGURATION = {
@@ -41,11 +42,18 @@ gulp.task('watch', function() {
 	gulp.watch(STATIC_FILES, ['deploy static']);
 });
 
-gulp.task('serve', ['typescript', 'sass', 'deploy static', 'watch'], function () {
+gulp.task('serve', ['typescript', 'sass', 'deploy static', 'watch'], function() {
 	nodemon({
 		script: CONFIGURATION.deploymentDirectory+'/index.js',
 		ext: 'js html'
 	})
+});
+
+gulp.task('test', ['typescript'], function() {
+	return gulp.src([CONFIGURATION.deploymentDirectoryBase+'/**/*.spec.js'])
+		.pipe(jasmine({
+			spec_dir: CONFIGURATION.deploymentDirectoryBase
+		}));
 });
 
 gulp.task('deploy static', [], function() {
