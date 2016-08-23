@@ -1,6 +1,8 @@
+"use strict";
 import {Check} from './check';
 import {Report} from "./report";
 import {Profile} from "./Profile";
+import {Barrier} from "./barrier";
 
 
 export class CheckManager {
@@ -8,16 +10,13 @@ export class CheckManager {
 
 	public execute(profile: Profile, callback: (reports: Report[]) => void) {
 		let reports: Report[] = [];
-		let waitForChecksToFinish: number = profile.checks.length;
+		let barrier = new Barrier(profile.checks.length).then(() => { callback(reports); });
 
 		profile.checks.forEach((checkConstructor) => {
 			let check: Check = new checkConstructor(profile.options || {});
 			check.execute(this.directory, (report: Report) => {
 				reports.push(report);
-				waitForChecksToFinish--;
-				if(waitForChecksToFinish == 0) {
-					callback(reports);
-				}
+				barrier.finishedTask();
 			});
 		});
 	}
