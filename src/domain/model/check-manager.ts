@@ -15,7 +15,9 @@ export class CheckManager {
 		profile.checks.forEach((checkConstructor) => {
 			let check: Check = new checkConstructor(profile.options || {});
 			check.execute(this.directory, (report: Report) => {
-				reports.push(report);
+				if(report) {
+					reports.push(report);
+				}
 				barrier.finishedTask();
 			});
 		});

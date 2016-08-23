@@ -28,6 +28,13 @@ class WebCheck implements Check {
 	}
 }
 
+class FailingCheck implements Check {
+	constructor(private options: { [name: string]: any }) {}
+	public execute(directory: string, callback: (report: Report) => void): void {
+		callback(null);
+	}
+}
+
 class SimpleReport implements Report {
 	constructor(public name: string, private checkResults: string[]) {}
 	renderReport(): string {
@@ -35,22 +42,39 @@ class SimpleReport implements Report {
 	}
 }
 
-let profile: Profile = {
-		name: 'Web',
-		description: 'Web checks',
-		checks: [GeneralCheck, WebCheck],
-		options: { strict: true }
-};
 let directory: string =  '/abc/def/';
 
 
 describe("CheckManager", () => {
 	it("should execute checkers and wait for the result", () => {
+		let profile: Profile = {
+			name: 'Web',
+			description: 'Web checks',
+			checks: [GeneralCheck, WebCheck],
+			options: { strict: true }
+		};
+
 		let checkManager = new CheckManager(directory);
 		let onFinish = (reports: Report[]) => {
 			expect(reports.length).toBe(2);
 			expect(reports[0].renderReport()).toEqual('General Check, 5 Errors, Checked /abc/def/');
 			expect(reports[1].renderReport()).toEqual('Web Check, 3 Warnings, Checked /abc/def/, strict: true');
+		};
+		checkManager.execute(profile, onFinish);
+	});
+
+	it("should return only correct reports", () => {
+		let profile: Profile = {
+			name: 'Web',
+			description: 'Web checks',
+			checks: [GeneralCheck, FailingCheck],
+			options: { strict: true }
+		};
+
+		let checkManager = new CheckManager(directory);
+		let onFinish = (reports: Report[]) => {
+			expect(reports.length).toBe(1);
+			expect(reports[0].renderReport()).toEqual('General Check, 5 Errors, Checked /abc/def/');
 		};
 		checkManager.execute(profile, onFinish);
 	});
