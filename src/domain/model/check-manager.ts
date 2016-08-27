@@ -21,7 +21,7 @@ export class CheckManager {
 			}
 			let check: Check = new checkConstructor(profile.options || {});
 			check.execute(this.directory, (report:Report, errors: Error[]) => {
-				if(errors) {
+				if(errors && errors.length > 0) {
 					reports.push(new ErrorReport(checkName, errors));
 				}
 				// if there are no checked files there will be no report -> ignore

@@ -16,7 +16,7 @@ class GeneralCheck implements Check {
 			'5 Errors',
 			'Checked '+directory
 		]);
-		setTimeout(() => { callback(report); },0);
+		setTimeout(() => { callback(report, []); },0);
 	}
 }
 
@@ -35,7 +35,7 @@ class WebCheck implements Check {
 class EmptyCheck implements Check {
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report,errors?: Error[]) => void): void {
-		setTimeout(() => { callback(null); }, 0) ;
+		setTimeout(() => { callback(null, []); }, 0) ;
 	}
 }
 
