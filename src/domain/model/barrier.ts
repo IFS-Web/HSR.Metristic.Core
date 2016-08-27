@@ -22,6 +22,11 @@ export class Barrier {
 		return this;
 	}
 
+	expand(amount: number): Barrier {
+		this.numberOfTasks += amount;
+		return this;
+	}
+
 	isFinished(task: any): boolean {
 		return this.finishedTasks.indexOf(task) >= 0;
 	}

@@ -35,6 +35,27 @@ describe("Barrier", () => {
 		expect(numberOfCalled).toBe(1);
 	});
 
+	it("extended barrier should finish after all", () => {
+		let numberOfCalled: number = 0;
+		let items: number[] = [ 1, 2, 3, 4, 5 ];
+		let itemsTransformed:number[] = [];
+		let barrier: Barrier = new Barrier(items.length-2);
+
+		let callback:() => void = () => {
+			numberOfCalled++;
+			expect(itemsTransformed).toEqual([2,4,6,8,10]);
+		};
+		barrier.then(callback);
+		items.forEach((item, index) => {
+			itemsTransformed[index] = item*2;
+			if(index == 1) {
+				barrier.expand(2);
+			}
+			barrier.finishedTask(item);
+		});
+		expect(numberOfCalled).toBe(1);
+	});
+
 	it("task should not yet be finished", () => {
 		let items: number[] = [ 1, 2, 3 ];
 		let barrier: Barrier = new Barrier(items.length);
