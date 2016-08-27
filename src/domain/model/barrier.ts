@@ -3,6 +3,7 @@
 
 export class Barrier {
 	private callback: () => void;
+	private finishedTasks: any = [];
 
 	constructor(private numberOfTasks: number) {}
 
@@ -11,11 +12,15 @@ export class Barrier {
 		return this;
 	}
 
-	finishedTask(): Barrier {
-		this.numberOfTasks--;
-		if(this.numberOfTasks <= 0) {
+	finishedTask(task: any = null): Barrier {
+		this.finishedTasks.push(task);
+		if(this.numberOfTasks <= this.finishedTasks.length) {
 			this.callback();
 		}
 		return this;
+	}
+
+	isFinished(task: any): boolean {
+		return this.finishedTasks.indexOf(task) >= 0;
 	}
 }
