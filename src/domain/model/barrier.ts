@@ -12,10 +12,12 @@ export class Barrier {
 		return this;
 	}
 
-	finishedTask(task: any = null): Barrier {
-		this.finishedTasks.push(task);
-		if(this.numberOfTasks <= this.finishedTasks.length) {
-			this.callback();
+	finishedTask(task: any): Barrier {
+		if(!this.isFinished(task)) {
+			this.finishedTasks.push(task);
+			if(this.numberOfTasks <= this.finishedTasks.length) {
+				this.callback();
+			}
 		}
 		return this;
 	}

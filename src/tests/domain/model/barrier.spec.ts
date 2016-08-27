@@ -15,8 +15,24 @@ describe("Barrier", () => {
 		barrier.then(callback);
 		items.forEach((item, index) => {
 			itemsTransformed[index] = item*2;
-			barrier.finishedTask();
+			barrier.finishedTask(item);
 		});
+	});
+
+	it("should finish same task only once", () => {
+		let numberOfCalled: number = 0;
+		let items: number[] = [ 1, 2, 3 ];
+		let barrier: Barrier = new Barrier(items.length);
+
+		let callback:() => void = () => {
+			numberOfCalled++;
+		};
+		barrier.then(callback);
+		items.forEach((item) => {
+			barrier.finishedTask(item);
+			barrier.finishedTask(item);
+		});
+		expect(numberOfCalled).toBe(1);
 	});
 
 	it("task should not yet be finished", () => {
