@@ -10,6 +10,15 @@ import {ErrorReport} from "./error-report";
 export class CheckManager {
 	constructor(private directory: string) {}
 
+	/**
+	 * @param profile
+	 * general profile options
+	 * 	{
+	 * 		general: {
+	 * 			checkTimeout: 15000 // ms - executen will be aborted, ErrorReport will be returned
+	 * 		}
+	 * 	}
+	 */
 	public execute(profile: Profile, callback: (reports: Report[]) => void) {
 		let reports: Report[] = [];
 		let barrier = new Barrier(profile.checks.length).then(() => { callback(reports); });
