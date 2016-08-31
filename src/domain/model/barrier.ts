@@ -12,6 +12,10 @@ export class Barrier {
 		return this;
 	}
 
+	waitingFor(): number {
+		return this.numberOfTasks - this.finishedTasks.length;
+	}
+
 	finishedTask(task: any): Barrier {
 		if(!this.isFinished(task)) {
 			this.finishedTasks.push(task);
