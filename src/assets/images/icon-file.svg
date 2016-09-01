@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" width="100mm" height="100mm" viewBox="0 0 10000 10000" preserveAspectRatio="xMidYMid" xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
+	<g>
+		<path fill="none" stroke="green" stroke-width="500" stroke-linejoin="round" d="M 8800,2121 L 8800,9801 1200,9801 1200,201 6900,201 8800,2121 Z"/>
+<path fill="green" stroke="none" d="M 6900,201 L 8700,2102 6900,2102 6900,201 6900,201 Z M 6900,201 L 6900,201 Z M 8701,2102 L 8701,2102 Z"/>
+		<path fill="none" stroke="green" stroke-width="500" stroke-linejoin="round" d="M 6900,201 L 8700,2102 6900,2102 6900,201 6900,201 Z"/>
+	</g>
+</svg>

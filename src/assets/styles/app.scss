@@ -1,0 +1,119 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+body {}
+
+
+h1 {
+	margin: 0;
+	padding: 0.5em;
+	background: #005291;
+	color: white;
+	box-shadow: 0 0 0.5em black;
+}
+
+h1 > a {
+	color: inherit;
+	&:hover {
+		text-decoration: inherit;
+		color: inherit;
+	}
+}
+
+main {
+	padding: 0.5em;
+}
+
+.icon {
+	height: 2em;
+	width: auto;
+}
+.icon.large {
+	height: 5em;
+}
+#print {
+	float: right;
+}
+
+ul {
+	padding-left: 0;
+	list-style-position: inside;
+}
+
+.structure {
+	margin-bottom: 0;
+	padding-left: 1em;
+
+	ul ul {
+		padding-left: 2.5em;
+	}
+	li li {
+		border-left: 1px solid black;
+		padding-top: 0.5em;
+
+		&:before {
+			content: "⏤"
+		}
+	}
+}
+
+/** plugin html metric */
+ul.hierarchical ul {
+	padding-left: 1.5em;
+}
+.domStructure ul {
+	font-size: 1.2rem;
+	line-height: 1.4rem;
+	list-style-type: none;
+}
+
+
+.label {
+	display: inline-block;
+	padding: 0.5em;
+	margin: 0.25em;
+	border-radius: 0.25em;
+	background: silver;
+	color: black;
+}
+.label.error {
+	background: maroon;
+	color: white;
+}
+.label.warning {
+	background: darkorange;
+}
+.label.success {
+	background: seagreen;
+}
+
+.bar {
+	background: #005291;
+	display: inline-block;
+	height: 1em;
+}
+
+table.statistics {
+	th { min-width: 5em; }
+	th, td { padding: 0 0.5em; }
+}
+
+
+@media print {
+	h1 {
+		color: black;
+		background: none;
+	}
+	a[href]:after {
+		// fix bootstrap added links
+		content: none;
+	}
+	#print { display: none; }
+}

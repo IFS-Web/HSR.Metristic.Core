@@ -1,0 +1,52 @@
+{
+  "name": "metristic",
+  "version": "0.1.0",
+  "description": "Project archive checking and metric web service",
+  "scripts": {
+    "start": "gulp serve",
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wasabideveloper/HSR.Metristic.git"
+  },
+  "keywords": [
+    "metrics",
+    "code",
+    "checker"
+  ],
+  "author": "HSR Hochschule für Technik Rapperswil, T. Blaser",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wasabideveloper/HSR.Metristic/issues"
+  },
+  "homepage": "https://github.com/wasabideveloper/HSR.Metristic#readme",
+  "dependencies": {
+    "css-parse": "^2.0.0",
+    "detect-character-encoding": "^0.2.1",
+    "express": "^4.14.0",
+    "express-hbs": "^1.0.2",
+    "formidable": "^1.0.17",
+    "fs": "0.0.2",
+    "glob": "^7.0.5",
+    "handlebars": "^4.0.5",
+    "htmlparser": "^1.7.7",
+    "jshint": "^2.9.2",
+    "node-uuid": "^1.4.7",
+    "path": "^0.12.7",
+    "request": "^2.74.0",
+    "rmdir": "^1.2.0",
+    "unzip": "^0.1.11"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jasmine": "^2.4.0",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.13.6",
+    "jasmine-node": "^1.14.5",
+    "livereload": "^0.5.0",
+    "node-sass": "^3.8.0"
+  }
+}
