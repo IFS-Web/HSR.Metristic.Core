@@ -6,8 +6,10 @@
 		<h2>Upload</h2>
 	</header>
 	<ul>
-		<li>{{name}} ({{size}})</li>
-		<li>Check profile &quot;{{profile.name}}&quot;</li>
+		<li><strong>Checked at</strong> <time datetime="{{moment date "YY/MM/D hh:mm"}}">{{moment date "YY/MM/D hh:mm"}}</time></li>
+		<li><strong>Checked for</strong> "{{user.name}}" ({{user.email}})</li>
+		<li><strong>Checked archive</strong> {{name}} ({{size}})</li>
+		<li><strong>Check profile</strong> &quot;{{profile.name}}&quot;</li>
 	</ul>
 </section>
 

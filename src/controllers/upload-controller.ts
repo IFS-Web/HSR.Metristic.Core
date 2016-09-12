@@ -12,6 +12,8 @@ import {Profile} from "../domain/model/Profile";
 let AppConfig = require("../configuration/app");
 let profiles: { [name: string]: Profile } = require("../configuration/profiles");
 
+interface User { name: string, email: string }
+
 
 export class UploadController {
 	public static indexAction(request, response): void {
@@ -27,12 +29,16 @@ export class UploadController {
 
 		form.parse(request, (error, fields, files) => {
 			let profile = profiles[fields['profile']];
+			let user: User = {
+				name: fields['user'],
+				email: fields['email']
+			};
 
 			let file = files[ 'archive' ];
 			if (file[ 'type' ] == 'application/zip') {
 				fs.createReadStream(file[ 'path' ]).pipe(unziper);
 				unziper.on('close', () => {
-					UploadController.execute(manager, profile, response, file, targetDirectory);
+					UploadController.execute(manager, profile, user, response, file, targetDirectory);
 				});
 			} else {
 				response.status(400).send(`${file[ 'type' ]} is not an allowed file format. Only zip is allowed!`);
@@ -40,9 +46,11 @@ export class UploadController {
 		});
 	}
 
-	private static execute(manager: CheckManager, profile: Profile, response, file: string, targetDirectory: string) {
+	private static execute(manager: CheckManager, profile: Profile, user: User, response, file: string, targetDirectory: string) {
 		manager.execute(profile, (reports:Report[]) => {
 			response.render('upload', {
+				date: Date.now(),
+				user: user,
 				name: file[ 'name' ],
 				size: file[ 'size' ] / 1000 + 'kb',
 				profile: profile,

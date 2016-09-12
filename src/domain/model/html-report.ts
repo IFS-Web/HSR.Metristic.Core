@@ -2,6 +2,7 @@ let Handlebars = require('handlebars');
 
 import{equal} from "./../../views/helpers/equal-helper";
 import{compare} from "./../../views/helpers/compare-helper";
+import {formatDate} from "./../../views/helpers/moment-helper";
 import {Report} from "./report";
 
 
@@ -11,6 +12,7 @@ export class HtmlReport implements Report {
 	constructor(public name: string, template: string, partials: {[name: string]: string}, private data: any) {
 		Handlebars.registerHelper('equal', equal);
 		Handlebars.registerHelper('compare', compare);
+		Handlebars.registerHelper('moment', formatDate);
 
 		Object.keys(partials).forEach((name) => {
 			Handlebars.registerPartial(name, partials[name]);
