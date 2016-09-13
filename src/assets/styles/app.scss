@@ -47,6 +47,7 @@ ul {
 	list-style-position: inside;
 }
 
+/** plugin structure metric **/
 .structure {
 	margin-bottom: 0;
 	padding-left: 1em;
@@ -65,8 +66,13 @@ ul {
 
 	.file-info {
 		font-size: 0.8em;
-		margin-left: 1em;
-
+		margin-left: 0.5em;
+		background: silver;
+		padding: 0.25em 0.75em;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: middle;
+		border: 1px solid darkgray;
 	}
 }
 
