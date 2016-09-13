@@ -3,6 +3,7 @@ let Handlebars = require('handlebars');
 import{equal} from "./../../views/helpers/equal-helper";
 import{compare} from "./../../views/helpers/compare-helper";
 import {formatDate} from "./../../views/helpers/moment-helper";
+import {round} from "./../../views/helpers/round-helper";
 import {Report} from "./report";
 
 
@@ -13,6 +14,7 @@ export class HtmlReport implements Report {
 		Handlebars.registerHelper('equal', equal);
 		Handlebars.registerHelper('compare', compare);
 		Handlebars.registerHelper('moment', formatDate);
+		Handlebars.registerHelper('round', round);
 
 		Object.keys(partials).forEach((name) => {
 			Handlebars.registerPartial(name, partials[name]);
