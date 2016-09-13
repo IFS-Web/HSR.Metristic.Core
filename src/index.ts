@@ -5,9 +5,11 @@ let express = require('express');
 let handlebars = require('express-hbs');
 
 import {UploadController} from "./controllers/upload-controller";
+import {formatDate} from "./views/helpers/moment-helper";
 
 let AppConfig: any = require("./configuration/app");
 
+handlebars.registerHelper('moment', formatDate);
 
 let app = express();
 app.engine('html', handlebars.express4(AppConfig.HANDLEBARS_CONFIGURATION));
