@@ -117,7 +117,7 @@ describe("CheckManager", () => {
 		});
 	});
 
-	describe("when executed checks returning errors", () => {
+	describe("when executing checks returning errors", () => {
 		let checkManager:CheckManager;
 		let checkReports:Report[];
 		let error: Error;
@@ -147,7 +147,7 @@ describe("CheckManager", () => {
 			expect(checkReports.length).toBe(2);
 			expect(checkReports[ 0 ].renderReport()).toEqual('General Check, 5 Errors, Checked /abc/def/');
 			expect(checkReports[ 1 ]).isPrototypeOf(ErrorReport);
-			expect(checkReports[ 1 ].renderReport()).toEqual(`<ul class="list-unstyled"><li class="error">Check failed</li></ul>`);
+			expect(checkReports[ 1 ].renderReport()).toEqual(`<ul class="list-unstyled">\n\t<li><span class="error label">error</span>Check failed</li>\n</ul>`);
 			expect(error).toBeUndefined();
 		});
 	});
