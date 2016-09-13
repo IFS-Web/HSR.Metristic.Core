@@ -59,8 +59,14 @@ ul {
 		padding-top: 0.5em;
 
 		&:before {
-			content: "⏤"
+			content: "--"
 		}
+	}
+
+	.file-info {
+		font-size: 0.8em;
+		margin-left: 1em;
+
 	}
 }
 
