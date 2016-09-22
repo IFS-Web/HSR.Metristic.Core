@@ -1,3 +1,5 @@
+/* tslint:disable:no-console */
+
 /// <reference path="../typings/tsd.d.ts" />
 "use strict";
 

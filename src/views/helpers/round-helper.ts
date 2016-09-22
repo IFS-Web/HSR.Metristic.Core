@@ -1,3 +1,5 @@
+/* tslint:disable:no-invalid-this */
+
 /**
  * Handlebars round helper
  *

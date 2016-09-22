@@ -16,8 +16,8 @@ export class HtmlReport implements Report {
 		Handlebars.registerHelper('moment', formatDate);
 		Handlebars.registerHelper('round', round);
 
-		Object.keys(partials).forEach((name) => {
-			Handlebars.registerPartial(name, partials[name]);
+		Object.keys(partials).forEach((partialName) => {
+			Handlebars.registerPartial(partialName, partials[partialName]);
 		});
 		this.renderer = Handlebars.compile(template);
 	}

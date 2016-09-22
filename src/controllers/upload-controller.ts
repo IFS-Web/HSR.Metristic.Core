@@ -1,4 +1,3 @@
-let path = require('path');
 let fs = require('fs');
 let formidable = require('formidable');
 let unzip = require('unzip');

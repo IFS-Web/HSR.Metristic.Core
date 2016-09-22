@@ -147,7 +147,8 @@ describe("CheckManager", () => {
 			expect(checkReports.length).toBe(2);
 			expect(checkReports[ 0 ].renderReport()).toEqual('General Check, 5 Errors, Checked /abc/def/');
 			expect(checkReports[ 1 ]).isPrototypeOf(ErrorReport);
-			expect(checkReports[ 1 ].renderReport()).toEqual(`<ul class="list-unstyled">\n\t<li><span class="error label">error</span>Check failed</li>\n</ul>`);
+			expect(checkReports[ 1 ].renderReport()).toEqual(`<ul class="list-unstyled">\n\t<li><span class="error `+
+				`label">error</span>Check failed</li>\n</ul>`);
 			expect(error).toBeUndefined();
 		});
 	});
