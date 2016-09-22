@@ -1,0 +1,27 @@
+{
+  "rules": {
+		"indent": [ true, "tab" ],
+		"max-line-length": [true, 140],
+		"curly": true,
+		"no-arg": true,
+		"no-bitwise": true,
+		"no-console": [true, "log", "error"],
+		"no-debugger": true,
+		"no-duplicate-key": true,
+		"no-duplicate-variable": true,
+		"no-eval": true,
+		"no-invalid-this": true,
+		"no-shadowed-variable": true,
+		"no-switch-case-fall-through": true,
+		"no-unreachable": true,
+		"no-unsafe-finally": true,
+		"no-unused-expression": true,
+		"no-unused-new": true,
+		"no-unused-variable": true,
+		"no-use-before-declare": true,
+		"switch-default": true
+		//"triple-equals": [true, "allow-null-check", "allow-undefined-check"] TODO
+		// "no-any": true TODO
+	}
+}
+

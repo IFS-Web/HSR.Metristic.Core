@@ -1,11 +1,12 @@
 'use strict';
 
-var gulp = require('gulp'),
+let gulp = require('gulp'),
 	nodemon = require('gulp-nodemon'),
 	ts = require('gulp-typescript'),
 	sass = require('gulp-sass'),
 	sourcemaps = require('gulp-sourcemaps'),
-	jasmine = require('gulp-jasmine');
+	jasmine = require('gulp-jasmine'),
+	tslint = require("gulp-tslint");
 
 
 var CONFIGURATION = {
@@ -13,7 +14,10 @@ var CONFIGURATION = {
 	sourceDirectoryAssets: __dirname+'/src/assets',
 	deploymentDirectoryBase: __dirname+'/dist',
 	deploymentDirectory: __dirname+'/dist/app',
-	deploymentDirectoryAssets: __dirname+'/dist/app/assets'
+	deploymentDirectoryAssets: __dirname+'/dist/app/assets',
+	tsLintConfig: {
+		configuration: './tslint.json'
+	}
 };
 var STATIC_FILES = [ 'js', 'html', 'png', 'jpg', 'svg', 'css' ].map(
 	(format) => CONFIGURATION.sourceDirectory+'/**/*.'+format
@@ -26,6 +30,12 @@ gulp.task('typescript', function() {
 		.pipe(ts({module: 'commonjs'})).js
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(CONFIGURATION.deploymentDirectory));
+});
+
+gulp.task('tslint', function() {
+	gulp.src([CONFIGURATION.sourceDirectory + '/**/*.ts'])
+		.pipe(tslint(CONFIGURATION.tsLintConfig))
+		.pipe(tslint.report());
 });
 
 gulp.task('sass', function () {
@@ -49,7 +59,7 @@ gulp.task('serve', ['typescript', 'sass', 'deploy static', 'watch'], function() 
 	})
 });
 
-gulp.task('test', ['typescript'], function() {
+gulp.task('test', ['typescript', 'tslint'], function() {
 	return gulp.src([CONFIGURATION.deploymentDirectoryBase+'/**/*.spec.js'])
 		.pipe(jasmine({
 			spec_dir: CONFIGURATION.deploymentDirectoryBase
