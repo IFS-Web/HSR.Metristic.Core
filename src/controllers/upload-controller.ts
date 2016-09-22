@@ -56,7 +56,7 @@ export class UploadController {
 				date: Date.now(),
 				user: user,
 				name: file[ 'name' ],
-				size: file[ 'size' ] / 1000 + 'kb',
+				size: file[ 'size' ] / 1000, // KiB
 				profile: profile,
 				reports: reports.map((report) => { return { name: report.name, report: report.renderReport() }})
 			});

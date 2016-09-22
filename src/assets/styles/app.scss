@@ -26,6 +26,9 @@ h1 > a {
 		color: inherit;
 	}
 }
+header > h1 small {
+	color: black;
+}
 
 main {
 	padding: 0.5em;
@@ -36,10 +39,11 @@ main {
 	width: auto;
 }
 .icon.large {
-	height: 5em;
+	height: 4em;
 }
 #print {
-	float: right;
+	position: absolute;
+	right: 1rem;
 }
 
 ul {
@@ -57,7 +61,7 @@ ul {
 	}
 	li li {
 		border-left: 1px solid black;
-		padding-top: 0.5em;
+		padding-top: 0.1em;
 
 		&:before {
 			content: "--"
@@ -86,7 +90,23 @@ ul.hierarchical ul {
 	list-style-type: none;
 }
 
-
+ul li > * {
+	vertical-align: top;
+}
+ul li > .label {
+	display: inline-block;
+	min-width: 7.5rem;
+}
+ul.message-list > li {
+	display: flex;
+	flex-flow: row;
+	align-items: flex-start;
+}
+.content {
+	display: inline-block;
+	padding: 0.25rem;
+	margin: 0;
+}
 .label {
 	display: inline-block;
 	padding: 0.5em;

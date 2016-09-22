@@ -5,12 +5,27 @@
 		</button>
 		<h2>Upload</h2>
 	</header>
-	<ul>
-		<li><strong>Checked at</strong> <time datetime="{{moment date "YY/MM/D hh:mm"}}">{{moment date "YY/MM/D hh:mm"}}</time></li>
-		<li><strong>Checked for</strong> "{{user.name}}" ({{user.email}})</li>
-		<li><strong>Checked archive</strong> {{name}} ({{size}})</li>
-		<li><strong>Check profile</strong> &quot;{{profile.name}}&quot;</li>
-	</ul>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Checked at</th><th>Checked for</th><th>Checked archive</th><th>Check profile</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><time datetime="{{moment date 'YY/MM/D'}}">{{moment date 'YY/MM/D'}}</time></td>
+				<td>{{user.name}}</td>
+				<td>{{name}}</td>
+				<td>{{profile.name}}</td>
+			</tr>
+			<tr>
+				<td><time datetime="{{moment date 'hh:mm'}}">{{moment date 'hh:mm'}}</time></td>
+				<td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+				<td>{{size}} KiB</td>
+				<td>{{profile.description}}</td>
+			</tr>
+		</tbody>
+	</table>
 </section>
 
 {{#each reports}}
