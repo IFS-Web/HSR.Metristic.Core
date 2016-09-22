@@ -161,10 +161,29 @@ table.statistics {
 	h1 {
 		color: black;
 		background: none;
+		border-bottom: 3px solid black;
+		padding: 0;
+		padding-bottom: 0.5rem;
+	}
+	h2 {
+		border-bottom: 1px solid black;
+		padding-bottom: 0.5rem;
+	}
+	main {
+		padding: 0;
 	}
 	a[href]:after {
 		// fix bootstrap added links
 		content: none;
 	}
 	#print { display: none; }
+	.label.warning {
+		border-style: dashed;
+	}
+	.bar {
+		border: 0.5em solid #005291;
+		border-left: 0;
+		border-right: 0;
+		height: 0em;
+	}
 }
