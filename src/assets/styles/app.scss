@@ -132,6 +132,16 @@ ul.message-list > li {
 	height: 1em;
 }
 
+.multicol.col-3 {
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	column-count: 3;
+
+	-webkit-column-gap: 1rem;
+	-moz-column-gap: 1rem;
+	column-gap: 1rem;
+}
+
 table.statistics {
 	th { min-width: 5em; }
 	th, td { padding: 0 0.5em; }
