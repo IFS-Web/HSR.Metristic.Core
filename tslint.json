@@ -19,7 +19,8 @@
 		"no-unused-new": true,
 		"no-unused-variable": true,
 		"no-use-before-declare": true,
-		"switch-default": true
+		"switch-default": true,
+		"use-strict": [true, "check-module"]
 		//"triple-equals": [true, "allow-null-check", "allow-undefined-check"] TODO
 		// "no-any": true TODO
 	}
