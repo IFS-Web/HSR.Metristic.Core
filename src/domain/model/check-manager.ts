@@ -25,21 +25,21 @@ export class CheckManager {
 		profile.options['general'] = profile.options['general'] || {};
 
 		profile.checks.forEach((checkConstructor) => {
-			let checkName: string = (<any>checkConstructor).name;
-			if(!profile.options[checkName]) {
-				profile.options[checkName] = {}
+			let checkName: string = (<any> checkConstructor).name;
+			if (!profile.options[checkName]) {
+				profile.options[checkName] = {};
 			}
 			let check: Check = new checkConstructor(profile.options || {});
 
 			setTimeout(() => {
-				if(!barrier.isFinished(check)) {
+				if (!barrier.isFinished(check)) {
 					reports.push(new ErrorReport(checkName, [new Error(`Execution took to long. Aborted.`)]));
 					barrier.finishedTask(check);
 				}
 			}, profile.options['general']['checkTimeout'] || 15000);
 
 			check.execute(this.directory, (report:Report, errors: Error[]) => {
-				if(!barrier.isFinished(check)) {
+				if (!barrier.isFinished(check)) {
 					if (errors && errors.length > 0) {
 						reports.push(new ErrorReport(checkName, errors));
 					}

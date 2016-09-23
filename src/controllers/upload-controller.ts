@@ -27,7 +27,7 @@ export class UploadController {
 		let unziper = unzip.Extract({ path: targetDirectory });
 
 		form.parse(request, (error, fields, files) => {
-			if(files[ 'archive' ] && fields['user'] && fields['email'] && fields['profile']) {
+			if (files[ 'archive' ] && fields['user'] && fields['email'] && fields['profile']) {
 				let profile = profiles[fields['profile']];
 				let user: User = {
 					name: fields['user'],
@@ -50,14 +50,14 @@ export class UploadController {
 	}
 
 	private static execute(manager: CheckManager, profile: Profile, user: User, response, file: string, targetDirectory: string) {
-		manager.execute(profile, (reports:Report[]) => {
+		manager.execute(profile, (reports: Report[]) => {
 			response.render('upload', {
 				date: Date.now(),
 				user: user,
 				name: file[ 'name' ],
 				size: file[ 'size' ] / 1000, // KiB
 				profile: profile,
-				reports: reports.map((report) => { return { name: report.name, report: report.renderReport() }})
+				reports: reports.map((report) => { return { name: report.name, report: report.renderReport() }; })
 			});
 			rmdir(targetDirectory);
 		});

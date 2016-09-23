@@ -17,9 +17,9 @@ export class Barrier {
 	}
 
 	finishedTask(task: any): Barrier {
-		if(!this.isFinished(task)) {
+		if (!this.isFinished(task)) {
 			this.finishedTasks.push(task);
-			if(this.numberOfTasks <= this.finishedTasks.length) {
+			if (this.numberOfTasks <= this.finishedTasks.length) {
 				this.callback();
 			}
 		}

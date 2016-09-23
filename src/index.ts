@@ -34,4 +34,4 @@ app.get('/', UploadController.indexAction);
 
 
 app.listen(AppConfig.APP_PORT);
-console.log('Server running on http://localhost:'+AppConfig.APP_PORT);
+console.log('Server running on http://localhost:' + AppConfig.APP_PORT);
