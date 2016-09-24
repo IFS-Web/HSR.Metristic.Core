@@ -43,8 +43,6 @@ export class UploadController {
 				} else {
 					response.status(400).send(`${file[ 'type' ]} is not an allowed file format. Only zip is allowed!`);
 				}
-			} else {
-				//TODO: handle this error: new Error('Missing params'))
 			}
 		});
 	}
