@@ -1,6 +1,6 @@
 {
   "name": "metristic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Project archive checking and metric web service",
   "scripts": {
     "start": "gulp serve",
