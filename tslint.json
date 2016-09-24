@@ -1,7 +1,5 @@
 {
   "rules": {
-		"indent": [ true, "tab" ],
-		"max-line-length": [true, 140],
 		"curly": true,
 		"no-arg": true,
 		"no-bitwise": true,
@@ -20,9 +18,24 @@
 		"no-unused-variable": true,
 		"no-use-before-declare": true,
 		"switch-default": true,
-		"use-strict": [true, "check-module"]
+		"use-strict": [true, "check-module"],
 		//"triple-equals": [true, "allow-null-check", "allow-undefined-check"] TODO
 		// "no-any": true TODO
+		"use-isnan": true,
+		"indent": [ true, "tab" ],
+		"max-line-length": [true, 140],
+		"eofline": true,
+		"linebreak-style": [true, "LF"],
+		"max-file-line-count": [true, 300],
+		"no-trailing-whitespace": true,
+		"trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+		"align": [true, "parameters", "statements"],
+		"arrow-parens": true,
+		"class-name": true,
+		"new-parens": true,
+		"semicolon": [true, "always", "ignore-interfaces"],
+		"variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
+		"whitespace": [true, "check-branch", "check-decl", "check-operator", "check-typecast", "check-separator"] // TODO "check-module"
 	}
 }
 
