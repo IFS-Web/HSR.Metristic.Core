@@ -52,7 +52,9 @@ gulp.task('watch', function() {
 	gulp.watch(STATIC_FILES, ['deploy static']);
 });
 
-gulp.task('serve', ['typescript', 'sass', 'deploy static', 'watch'], function() {
+gulp.task('deploy', ['typescript', 'sass', 'deploy static'], function() {});
+
+gulp.task('serve', ['deploy', 'watch'], function() {
 	nodemon({
 		script: CONFIGURATION.deploymentDirectory+'/index.js',
 		ext: 'js html'
