@@ -19,8 +19,6 @@
 		"no-use-before-declare": true,
 		"switch-default": true,
 		"use-strict": [true, "check-module"],
-		//"triple-equals": [true, "allow-null-check", "allow-undefined-check"] TODO
-		// "no-any": true TODO
 		"use-isnan": true,
 		"indent": [ true, "tab" ],
 		"max-line-length": [true, 140],
@@ -35,7 +33,7 @@
 		"new-parens": true,
 		"semicolon": [true, "always", "ignore-interfaces"],
 		"variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
-		"whitespace": [true, "check-branch", "check-decl", "check-operator", "check-typecast", "check-separator"] // TODO "check-module"
+		"whitespace": [true, "check-branch", "check-decl", "check-operator", "check-typecast", "check-separator"]
 	}
 }
 
