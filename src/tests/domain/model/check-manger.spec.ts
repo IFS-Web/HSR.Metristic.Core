@@ -14,27 +14,27 @@ class GeneralCheck implements Check {
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
 		let report:Report = new SimpleReport('General Check', [
 			'5 Errors',
-			'Checked '+directory
+			'Checked ' + directory
 		]);
-		setTimeout(() => { callback(report, []); },0);
+		setTimeout(() => { callback(report, []); }, 0);
 	}
 }
 
 class WebCheck implements Check {
 	constructor(private options: { [name: string]: any }) {}
-	public execute(directory: string, callback: (report: Report,errors?: Error[]) => void): void {
+	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
 		let report:Report = new SimpleReport('Web Check', [
 			'3 Warnings',
-			'Checked '+directory,
-			'strict: '+this.options['strict']
+			'Checked ' + directory,
+			'strict: ' + this.options['strict']
 		]);
-		setTimeout(() => { callback(report); },0);
+		setTimeout(() => { callback(report); }, 0);
 	}
 }
 
 class EmptyCheck implements Check {
 	constructor(private options: { [name: string]: any }) {}
-	public execute(directory: string, callback: (report: Report,errors?: Error[]) => void): void {
+	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
 		setTimeout(() => { callback(null, []); }, 0) ;
 	}
 }
@@ -44,7 +44,7 @@ class FailingCheck implements Check {
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
 		let report:Report = new SimpleReport('Web Check', []);
 		let errors: Error[] = [new Error('Check failed')];
-		setTimeout(() => { callback(report, errors); },0);
+		setTimeout(() => { callback(report, errors); }, 0);
 	}
 }
 
@@ -117,7 +117,7 @@ describe("CheckManager", () => {
 		});
 	});
 
-	describe("when executed checks returning errors", () => {
+	describe("when executing checks returning errors", () => {
 		let checkManager:CheckManager;
 		let checkReports:Report[];
 		let error: Error;
@@ -147,7 +147,8 @@ describe("CheckManager", () => {
 			expect(checkReports.length).toBe(2);
 			expect(checkReports[ 0 ].renderReport()).toEqual('General Check, 5 Errors, Checked /abc/def/');
 			expect(checkReports[ 1 ]).isPrototypeOf(ErrorReport);
-			expect(checkReports[ 1 ].renderReport()).toEqual(`<ul class="list-unstyled"><li class="error">Check failed</li></ul>`);
+			expect(checkReports[ 1 ].renderReport()).toEqual(`<ul class="list-unstyled">\n\t<li><span class="error ` +
+				`label">error</span>Check failed</li>\n</ul>`);
 			expect(error).toBeUndefined();
 		});
 	});

@@ -1,6 +1,6 @@
 {
   "name": "metristic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Project archive checking and metric web service",
   "scripts": {
     "start": "gulp serve",
@@ -32,6 +32,8 @@
     "handlebars": "^4.0.5",
     "htmlparser": "^1.7.7",
     "jshint": "^2.9.2",
+    "limits": "0.0.7",
+    "moment": "^2.15.0",
     "node-uuid": "^1.4.7",
     "path": "^0.12.7",
     "request": "^2.74.0",
@@ -44,9 +46,11 @@
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-tslint": "^6.1.1",
     "gulp-typescript": "^2.13.6",
     "jasmine-node": "^1.14.5",
     "livereload": "^0.5.0",
-    "node-sass": "^3.8.0"
+    "node-sass": "^3.8.0",
+    "tslint": "^3.15.1"
   }
 }

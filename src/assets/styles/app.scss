@@ -26,6 +26,9 @@ h1 > a {
 		color: inherit;
 	}
 }
+header > h1 small {
+	color: black;
+}
 
 main {
 	padding: 0.5em;
@@ -36,10 +39,11 @@ main {
 	width: auto;
 }
 .icon.large {
-	height: 5em;
+	height: 4em;
 }
 #print {
-	float: right;
+	position: absolute;
+	right: 1rem;
 }
 
 ul {
@@ -47,6 +51,7 @@ ul {
 	list-style-position: inside;
 }
 
+/** plugin structure metric **/
 .structure {
 	margin-bottom: 0;
 	padding-left: 1em;
@@ -56,11 +61,22 @@ ul {
 	}
 	li li {
 		border-left: 1px solid black;
-		padding-top: 0.5em;
+		padding-top: 0.1em;
 
 		&:before {
-			content: "⏤"
+			content: "--"
 		}
+	}
+
+	.file-info {
+		font-size: 0.8em;
+		margin-left: 0.5em;
+		background: silver;
+		padding: 0.25em 0.75em;
+		border-radius: 1em;
+		display: inline-block;
+		vertical-align: middle;
+		border: 1px solid darkgray;
 	}
 }
 
@@ -74,7 +90,23 @@ ul.hierarchical ul {
 	list-style-type: none;
 }
 
-
+ul li > * {
+	vertical-align: top;
+}
+ul li > .label {
+	display: inline-block;
+	min-width: 7.5rem;
+}
+ul.message-list > li {
+	display: flex;
+	flex-flow: row;
+	align-items: flex-start;
+}
+.content {
+	display: inline-block;
+	padding: 0.25rem;
+	margin: 0;
+}
 .label {
 	display: inline-block;
 	padding: 0.5em;
@@ -100,9 +132,28 @@ ul.hierarchical ul {
 	height: 1em;
 }
 
+.multicol.col-3 {
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	column-count: 3;
+
+	-webkit-column-gap: 1rem;
+	-moz-column-gap: 1rem;
+	column-gap: 1rem;
+}
+
 table.statistics {
 	th { min-width: 5em; }
 	th, td { padding: 0 0.5em; }
+}
+
+// fix bootstrap
+.row {
+	margin-right: 0;
+	margin-left: 0;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+	padding-left: 0;
 }
 
 
@@ -110,10 +161,29 @@ table.statistics {
 	h1 {
 		color: black;
 		background: none;
+		border-bottom: 3px solid black;
+		padding: 0;
+		padding-bottom: 0.5rem;
+	}
+	h2 {
+		border-bottom: 1px solid black;
+		padding-bottom: 0.5rem;
+	}
+	main {
+		padding: 0;
 	}
 	a[href]:after {
 		// fix bootstrap added links
 		content: none;
 	}
 	#print { display: none; }
+	.label.warning {
+		border-style: dashed;
+	}
+	.bar {
+		border: 0.5em solid #005291;
+		border-left: 0;
+		border-right: 0;
+		height: 0em;
+	}
 }

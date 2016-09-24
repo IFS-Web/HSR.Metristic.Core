@@ -9,12 +9,12 @@ describe("Barrier", () => {
 		let itemsTransformed:number[] = [];
 		let barrier: Barrier = new Barrier(items.length);
 
-		let callback:() => void = () => {
-			expect(itemsTransformed).toEqual([2,4,6]);
+		let callback: () => void = () => {
+			expect(itemsTransformed).toEqual([ 2, 4, 6 ]);
 		};
 		barrier.then(callback);
 		items.forEach((item, index) => {
-			itemsTransformed[index] = item*2;
+			itemsTransformed[index] = item * 2;
 			barrier.finishedTask(item);
 		});
 	});
@@ -39,16 +39,16 @@ describe("Barrier", () => {
 		let numberOfCalled: number = 0;
 		let items: number[] = [ 1, 2, 3, 4, 5 ];
 		let itemsTransformed:number[] = [];
-		let barrier: Barrier = new Barrier(items.length-2);
+		let barrier: Barrier = new Barrier(items.length - 2);
 
 		let callback:() => void = () => {
 			numberOfCalled++;
-			expect(itemsTransformed).toEqual([2,4,6,8,10]);
+			expect(itemsTransformed).toEqual([ 2, 4, 6, 8, 10 ]);
 		};
 		barrier.then(callback);
 		items.forEach((item, index) => {
-			itemsTransformed[index] = item*2;
-			if(index == 1) {
+			itemsTransformed[index] = item * 2;
+			if (index == 1) {
 				barrier.expand(2);
 			}
 			barrier.finishedTask(item);

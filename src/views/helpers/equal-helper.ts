@@ -1,3 +1,5 @@
+/* tslint:disable:no-invalid-this */
+
 /**
  * Handlebars equal helper
  *
@@ -10,7 +12,7 @@ export function equal(lValue: any, rValue: any, options: any) {
 	if (arguments.length < 3) {
 		throw new Error("2 parameters for comparison required!");
 	}
-	if( lValue != rValue ) {
+	if ( lValue != rValue ) {
 		return options.inverse(this);
 	} else {
 		return options.fn(this);
