@@ -5,8 +5,8 @@ let uuid = require('node-uuid');
 let rmdir = require('rmdir');
 
 import {CheckManager} from "../domain/model/check-manager";
-import {Report} from "../domain/model/report";
-import {Profile} from "../domain/model/Profile";
+import {Report} from "../domain/report/report";
+import {Profile} from "../domain/model/profile";
 
 let AppConfig = require("../configuration/app");
 let profiles: { [name: string]: Profile } = require("../configuration/profiles");

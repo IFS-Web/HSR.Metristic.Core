@@ -1,14 +1,14 @@
 {
-  "name": "metristic",
+  "name": "metristic-core",
   "version": "0.2.0",
-  "description": "Project archive checking and metric web service",
+  "description": "Metristic web application and plugin interfaces",
   "scripts": {
     "start": "gulp serve",
     "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wasabideveloper/HSR.Metristic.git"
+    "url": "git+https://github.com/wasabideveloper/HSR.Metristic.Core.git"
   },
   "keywords": [
     "metrics",
@@ -20,23 +20,17 @@
   "bugs": {
     "url": "https://github.com/wasabideveloper/HSR.Metristic/issues"
   },
-  "homepage": "https://github.com/wasabideveloper/HSR.Metristic#readme",
+  "homepage": "https://github.com/wasabideveloper/HSR.Metristic.Core#readme",
   "dependencies": {
-    "css-parse": "^2.0.0",
-    "detect-character-encoding": "^0.2.1",
     "express": "^4.14.0",
     "express-hbs": "^1.0.2",
     "formidable": "^1.0.17",
     "fs": "0.0.2",
-    "glob": "^7.0.5",
     "handlebars": "^4.0.5",
-    "htmlparser": "^1.7.7",
-    "jshint": "^2.9.2",
     "limits": "0.0.7",
     "moment": "^2.15.0",
     "node-uuid": "^1.4.7",
     "path": "^0.12.7",
-    "request": "^2.74.0",
     "rmdir": "^1.2.0",
     "unzip": "^0.1.11"
   },

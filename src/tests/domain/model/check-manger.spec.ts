@@ -3,10 +3,10 @@
 let Domain = require('domain');
 
 import {Check} from "../../../domain/model/check";
-import {Report} from "../../../domain/model/report";
+import {Report} from "../../../domain/report/report";
 import {CheckManager} from "../../../domain/model/check-manager";
-import {Profile} from "../../../domain/model/Profile";
-import {ErrorReport} from "../../../domain/model/error-report";
+import {Profile} from "../../../domain/model/profile";
+import {ErrorReport} from "../../../domain/report/error-report";
 
 
 class GeneralCheck implements Check {

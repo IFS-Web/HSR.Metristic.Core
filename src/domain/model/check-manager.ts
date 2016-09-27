@@ -1,10 +1,10 @@
 "use strict";
 
 import {Check} from './check';
-import {Report} from "./report";
-import {Profile} from "./Profile";
+import {Report} from "./../report/report";
+import {Profile} from "./profile";
 import {Barrier} from "./barrier";
-import {ErrorReport} from "./error-report";
+import {ErrorReport} from "./../report/error-report";
 
 
 export class CheckManager {

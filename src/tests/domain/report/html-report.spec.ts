@@ -1,5 +1,5 @@
 /// <reference path="../../../../typings/tsd.d.ts" />
-import {HtmlReport} from "../../../domain/model/html-report";
+import {HtmlReport} from "../../../domain/report/hbs-report";
 
 
 describe("HTML Report", () => {
