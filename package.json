@@ -4,7 +4,8 @@
   "description": "Metristic web application and plugin interfaces",
   "scripts": {
     "start": "gulp serve",
-    "test": "gulp test"
+    "test": "gulp test",
+    "postinstall": "gulp deploy"
   },
   "main": "app/index.js",
   "typings": "src/index",

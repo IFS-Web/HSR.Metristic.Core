@@ -2,6 +2,7 @@
 
 export * from "./application";
 
+export * from "./domain/model/barrier";
 export * from "./domain/model/check";
 export * from "./domain/model/profile";
 
