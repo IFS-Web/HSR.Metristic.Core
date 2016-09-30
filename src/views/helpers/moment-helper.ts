@@ -1,4 +1,5 @@
 /* tslint:disable:no-invalid-this */
+'use strict';
 
 let Moment = require('moment');
 

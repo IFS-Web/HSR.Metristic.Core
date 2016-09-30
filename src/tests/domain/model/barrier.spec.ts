@@ -1,5 +1,5 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
-"use strict";
+'use strict';
+
 import {Barrier} from "../../../domain/model/barrier";
 
 

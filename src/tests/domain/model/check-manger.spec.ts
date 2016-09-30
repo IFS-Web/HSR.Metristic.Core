@@ -1,5 +1,5 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
-"use strict";
+'use strict';
+
 let Domain = require('domain');
 
 import {Check} from "../../../domain/model/check";

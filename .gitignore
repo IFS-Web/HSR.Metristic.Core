@@ -33,6 +33,7 @@ typings
 
 # build
 dist
+app
 
 # Optional npm cache directory
 .npm

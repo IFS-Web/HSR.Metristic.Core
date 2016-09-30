@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import {Check} from './check';
 import {Report} from "./../report/report";

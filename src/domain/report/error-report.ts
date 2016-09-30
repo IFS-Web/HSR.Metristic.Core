@@ -1,3 +1,5 @@
+'use strict';
+
 let Handlebars = require('handlebars');
 
 import {Report} from "./report";

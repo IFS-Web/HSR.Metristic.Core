@@ -1,3 +1,5 @@
+'use strict';
+
 let Handlebars = require('handlebars');
 
 import{equal} from "./../../views/helpers/equal-helper";

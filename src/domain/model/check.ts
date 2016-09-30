@@ -1,3 +1,5 @@
+'use strict';
+
 import {Report} from "./../report/report";
 
 

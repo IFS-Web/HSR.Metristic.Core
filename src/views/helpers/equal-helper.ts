@@ -1,5 +1,8 @@
 /* tslint:disable:no-invalid-this */
 
+'use strict';
+
+
 /**
  * Handlebars equal helper
  *
