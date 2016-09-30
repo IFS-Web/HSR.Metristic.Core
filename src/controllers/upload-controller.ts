@@ -1,3 +1,5 @@
+'use strict';
+
 let fs = require('fs');
 let formidable = require('formidable');
 let unzip = require('unzip');
@@ -8,27 +10,28 @@ import {CheckManager} from "../domain/model/check-manager";
 import {Report} from "../domain/report/report";
 import {Profile} from "../domain/model/profile";
 
-let AppConfig = require("../configuration/app");
-let profiles: { [name: string]: Profile } = require("../configuration/profiles");
 
 interface User { name: string, email: string }
 
 
 export class UploadController {
-	public static indexAction(request, response): void {
-		response.render('home', { profiles: profiles, maxUpload: AppConfig.MAX_UPLOAD_SIZE });
+	constructor(private profiles: {[name:string]: Profile}, private config: {[name: string]: any}) {
+
+	}
+	public indexAction(request, response): void {
+		response.render('home', { profiles: this.profiles, maxUpload: this.config['MAX_UPLOAD_SIZE'] });
 	}
 
-	public static uploadAction(request, response, next): void {
+	public uploadAction(request, response, next): void {
 		let form = new formidable.IncomingForm();
 
-		let targetDirectory: string = AppConfig.ARCHIVE_TMP_DIRECTORY + uuid.v1();
+		let targetDirectory: string = this.config['ARCHIVE_TMP_DIRECTORY'] + uuid.v1();
 		let manager: CheckManager = new CheckManager(targetDirectory);
 		let unziper = unzip.Extract({ path: targetDirectory });
 
 		form.parse(request, (error, fields, files) => {
 			if (files[ 'archive' ] && fields['user'] && fields['email'] && fields['profile']) {
-				let profile = profiles[fields['profile']];
+				let profile = this.profiles[fields['profile']];
 				let user: User = {
 					name: fields['user'],
 					email: fields['email']
