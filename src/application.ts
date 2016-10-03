@@ -59,19 +59,19 @@ export class Application {
 		Object.keys(this.profiles).forEach((profileKey) => {
 			plugins = plugins.concat(this.profiles[profileKey].checks);
 		});
-		plugins.filter((value, index, self) => {
-			return self.indexOf(value) === index;
+		// remove duplicates
+		return plugins.filter((plugin, index, self) => {
+			return self.indexOf(plugin) === index;
 		});
-		return plugins;
 	}
 
 	private getPluginAssetsConfiguration():{ name: string, path: string }[] {
 		return this.getConfiguredPlugins()
+			.filter((plugin) => Boolean(plugin.assetsDirectory))
 			.map((plugin) => {
 				let pluginName = ((<any> plugin).name).toLowerCase();
 				return { name: pluginName, path: plugin.assetsDirectory };
-			})
-			.filter((assetsDirectory) => Boolean(assetsDirectory));
+			});
 	}
 
 	private getPluginStyleSheetPaths():string[] {
