@@ -11,4 +11,6 @@ export interface CheckConstructor {
 	new (options: { [name: string]: any }): Check;
 	// this directory will be accesible static by /assets/plugins/checkclassnamelowercase/
 	assetsDirectory: string;
+	// style sheets will be embeded. Use paths relative to assets
+	styleSheetFiles: string[];
 }

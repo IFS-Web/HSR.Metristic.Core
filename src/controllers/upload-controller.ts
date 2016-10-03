@@ -41,7 +41,7 @@ export class UploadController {
 				if (file[ 'type' ] == 'application/zip') {
 					fs.createReadStream(file[ 'path' ]).pipe(unziper);
 					unziper.on('close', () => {
-						UploadController.execute(manager, profile, user, response, file, targetDirectory);
+						this.execute(manager, profile, user, response, file, targetDirectory);
 					});
 				} else {
 					response.status(400).send(`${file[ 'type' ]} is not an allowed file format. Only zip is allowed!`);
@@ -50,9 +50,10 @@ export class UploadController {
 		});
 	}
 
-	private static execute(manager: CheckManager, profile: Profile, user: User, response, file: string, targetDirectory: string) {
+	private execute(manager: CheckManager, profile: Profile, user: User, response, file: string, targetDirectory: string) {
 		manager.execute(profile, (reports: Report[]) => {
 			response.render('upload', {
+				pluginStyleSheets: this.config['PLUGIN_STYLESHEET_PATHS'],
 				date: Date.now(),
 				user: user,
 				name: file[ 'name' ],

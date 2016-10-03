@@ -11,6 +11,7 @@ import {ErrorReport} from "../../../domain/report/error-report";
 
 class GeneralCheck implements Check {
 	static assetsDirectory: string = '/generalCheck';
+	static styleSheetFiles: string[] = null;
 
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
@@ -24,6 +25,7 @@ class GeneralCheck implements Check {
 
 class WebCheck implements Check {
 	static assetsDirectory: string = '/webCheck';
+	static styleSheetFiles: string[] = null;
 
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
@@ -38,6 +40,7 @@ class WebCheck implements Check {
 
 class EmptyCheck implements Check {
 	static assetsDirectory: string = null;
+	static styleSheetFiles: string[] = null;
 
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
@@ -47,6 +50,7 @@ class EmptyCheck implements Check {
 
 class FailingCheck implements Check {
 	static assetsDirectory: string = null;
+	static styleSheetFiles: string[] = null;
 
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {

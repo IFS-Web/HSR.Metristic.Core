@@ -8,6 +8,11 @@
 		<title>Metristic</title>
 
 		<link href="./assets/core/libraries/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		{{#if pluginStyleSheets}}
+			{{#each pluginStyleSheets}}
+				<link href="{{this}}" rel="stylesheet" />
+			{{/each}}
+		{{/if}}
 		<link href="./assets/core/styles/app.css" rel="stylesheet" />
 
 		<script src="./assets/core/scripts/select-help.js"></script>

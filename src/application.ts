@@ -5,6 +5,7 @@
 let express = require('express');
 let handlebars = require('express-hbs');
 let limits = require('limits');
+let Path = require('path');
 
 import {UploadController} from "./controllers/upload-controller";
 import {formatDate} from "./views/helpers/moment-helper";
@@ -25,6 +26,7 @@ export class Application {
 		Object.keys(config).forEach((key) => {
 			this.config[key] = config[key];
 		});
+		this.config['PLUGIN_STYLESHEET_PATHS'] = this.getPluginStyleSheetPaths();
 		this.limitsConfig = {
 			enable: true,
 			file_uploads: true,
@@ -66,9 +68,23 @@ export class Application {
 	private getPluginAssetsConfiguration():{ name: string, path: string }[] {
 		return this.getConfiguredPlugins()
 			.map((plugin) => {
-				return { name: ((<any> plugin).name).toLowerCase(), path: plugin.assetsDirectory };
+				let pluginName = ((<any> plugin).name).toLowerCase();
+				return { name: pluginName, path: plugin.assetsDirectory };
 			})
 			.filter((assetsDirectory) => Boolean(assetsDirectory));
+	}
+
+	private getPluginStyleSheetPaths():string[] {
+		return this.getConfiguredPlugins()
+			.reduce((styleSheets, plugin) => {
+				let pluginName = ((<any> plugin).name).toLowerCase();
+				let styleSheetPaths: string[] = plugin.styleSheetFiles
+					.filter((styleSheetPath) => Boolean(styleSheetPath))
+					.map((relativeStylesheetPath) =>
+						Path.join(`./assets/plugins/${pluginName}/`, relativeStylesheetPath)
+					);
+				return styleSheets.concat(styleSheetPaths);
+			}, [])
 	}
 
 	public start() {
