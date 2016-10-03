@@ -51,35 +51,6 @@ ul {
 	list-style-position: inside;
 }
 
-/** plugin structure metric **/
-.structure {
-	margin-bottom: 0;
-	padding-left: 1em;
-
-	ul ul {
-		padding-left: 2.5em;
-	}
-	li li {
-		border-left: 1px solid black;
-		padding-top: 0.1em;
-
-		&:before {
-			content: "--"
-		}
-	}
-
-	.file-info {
-		font-size: 0.8em;
-		margin-left: 0.5em;
-		background: silver;
-		padding: 0.25em 0.75em;
-		border-radius: 1em;
-		display: inline-block;
-		vertical-align: middle;
-		border: 1px solid darkgray;
-	}
-}
-
 /** plugin html metric */
 ul.hierarchical ul {
 	padding-left: 1.5em;

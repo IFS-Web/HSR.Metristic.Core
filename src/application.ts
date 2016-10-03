@@ -9,6 +9,7 @@ let limits = require('limits');
 import {UploadController} from "./controllers/upload-controller";
 import {formatDate} from "./views/helpers/moment-helper";
 import {Profile} from "./domain/model/profile";
+import {CheckConstructor} from "./domain/model/check";
 
 let appConfig: any = require("./../configuration/app");
 
@@ -39,12 +40,35 @@ export class Application {
 		this.app.set('views', __dirname + '/views');
 		this.app.use(limits(this.limitsConfig));
 
-		this.app.use('/assets', express.static(this.config['ASSETS_DIRECTORY']));
+		this.app.use('/assets/core', express.static(this.config['ASSETS_DIRECTORY']));
+		// expose all asset directories of the plugins as /assets/plugins/pluginname/
+		this.getPluginAssetsConfiguration().forEach((pluginAssetsConfig) => {
+			this.app.use(`/assets/plugins/${pluginAssetsConfig.name}`, express.static(pluginAssetsConfig.path));
+		});
 
 		let uploadController = new UploadController(this.profiles, this.config);
 
 		this.app.post('/upload', uploadController.uploadAction.bind(uploadController));
 		this.app.get('/', uploadController.indexAction.bind(uploadController));
+	}
+
+	private getConfiguredPlugins(): CheckConstructor[] {
+		let plugins = [];
+		Object.keys(this.profiles).forEach((profileKey) => {
+			plugins = plugins.concat(this.profiles[profileKey].checks);
+		});
+		plugins.filter((value, index, self) => {
+			return self.indexOf(value) === index;
+		});
+		return plugins;
+	}
+
+	private getPluginAssetsConfiguration():{ name: string, path: string }[] {
+		return this.getConfiguredPlugins()
+			.map((plugin) => {
+				return { name: ((<any> plugin).name).toLowerCase(), path: plugin.assetsDirectory };
+			})
+			.filter((assetsDirectory) => Boolean(assetsDirectory));
 	}
 
 	public start() {

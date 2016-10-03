@@ -10,6 +10,8 @@ import {ErrorReport} from "../../../domain/report/error-report";
 
 
 class GeneralCheck implements Check {
+	static assetsDirectory: string = '/generalCheck';
+
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
 		let report:Report = new SimpleReport('General Check', [
@@ -21,6 +23,8 @@ class GeneralCheck implements Check {
 }
 
 class WebCheck implements Check {
+	static assetsDirectory: string = '/webCheck';
+
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
 		let report:Report = new SimpleReport('Web Check', [
@@ -33,6 +37,8 @@ class WebCheck implements Check {
 }
 
 class EmptyCheck implements Check {
+	static assetsDirectory: string = null;
+
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
 		setTimeout(() => { callback(null, []); }, 0) ;
@@ -40,6 +46,8 @@ class EmptyCheck implements Check {
 }
 
 class FailingCheck implements Check {
+	static assetsDirectory: string = null;
+
 	constructor(private options: { [name: string]: any }) {}
 	public execute(directory: string, callback: (report: Report, errors?: Error[]) => void): void {
 		let report:Report = new SimpleReport('Web Check', []);
