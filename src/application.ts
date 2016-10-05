@@ -78,7 +78,7 @@ export class Application {
 		return this.getConfiguredPlugins()
 			.reduce((styleSheets, plugin) => {
 				let pluginName = ((<any> plugin).name).toLowerCase();
-				let styleSheetPaths: string[] = plugin.styleSheetFiles
+				let styleSheetPaths: string[] = (plugin.styleSheetFiles || [])
 					.filter((styleSheetPath) => Boolean(styleSheetPath))
 					.map((relativeStylesheetPath) =>
 						Path.join(`./assets/plugins/${pluginName}/`, relativeStylesheetPath)
