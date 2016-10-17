@@ -3,9 +3,7 @@
   "version": "0.2.0",
   "description": "Metristic web application and plugin interfaces",
   "scripts": {
-    "start": "gulp serve",
-    "test": "gulp test",
-    "postinstall": "gulp deploy"
+    "test": "gulp test"
   },
   "main": "app/index.js",
   "typings": "src/index",

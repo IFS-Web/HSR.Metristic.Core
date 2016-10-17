@@ -84,7 +84,7 @@ export class Application {
 						Path.join(`./assets/plugins/${pluginName}/`, relativeStylesheetPath)
 					);
 				return styleSheets.concat(styleSheetPaths);
-			}, [])
+			}, []);
 	}
 
 	public start() {

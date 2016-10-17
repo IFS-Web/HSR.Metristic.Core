@@ -27,15 +27,16 @@ Metristic web application and plugin interfaces.
 ### Global dependencies
 
 * Node.js / npm
-* Typescript Compiler ```npm install tsc --global```
-* Typings ```npm install typings --global```
+* Gulp `npm install gulp --global`
+* Typescript Compiler `npm install typescript --global`
+* Typings `npm install typings --global`
 
 ### Installation
 
 * Install global dependencies
 * Clone project
 * Run `npm install` to install the dependencies.
-* Install typings depencency `tsd install`
+* Install typings depencency `typings install`
 
 ### Commands
 
