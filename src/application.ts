@@ -6,6 +6,7 @@ let express = require('express');
 let handlebars = require('express-hbs');
 let limits = require('limits');
 let Path = require('path');
+let FS = require('fs');
 
 import {UploadController} from "./controllers/upload-controller";
 import {formatDate} from "./views/helpers/moment-helper";
@@ -45,6 +46,11 @@ export class Application {
 		this.app.use('/assets/core', express.static(this.config['ASSETS_DIRECTORY']));
 		// expose all asset directories of the plugins as /assets/plugins/pluginname/
 		this.getPluginAssetsConfiguration().forEach((pluginAssetsConfig) => {
+			try {
+				FS.mkdirSync(pluginAssetsConfig.path);
+			} catch(e) {
+				// who cares if already exists?
+			}
 			this.app.use(`/assets/plugins/${pluginAssetsConfig.name}`, express.static(pluginAssetsConfig.path));
 		});
 
