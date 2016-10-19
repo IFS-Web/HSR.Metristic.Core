@@ -2,7 +2,7 @@
 
 let fs = require('fs');
 let formidable = require('formidable');
-let unzip = require('unzip');
+let DecompressZip = require('decompress-zip');
 let uuid = require('node-uuid');
 let rmdir = require('rmdir');
 
@@ -27,7 +27,6 @@ export class UploadController {
 
 		let targetDirectory: string = this.config['ARCHIVE_TMP_DIRECTORY'] + uuid.v1();
 		let manager: CheckManager = new CheckManager(targetDirectory);
-		let unziper = unzip.Extract({ path: targetDirectory });
 
 		form.parse(request, (error, fields, files) => {
 			if (files[ 'archive' ] && fields['user'] && fields['email'] && fields['profile']) {
@@ -39,10 +38,11 @@ export class UploadController {
 
 				let file = files[ 'archive' ];
 				if (file[ 'type' ] == 'application/zip') {
-					fs.createReadStream(file[ 'path' ]).pipe(unziper);
-					unziper.on('close', () => {
+					let unzipper = new DecompressZip(file[ 'path' ]);
+					unzipper.on('extract', () => {
 						this.execute(manager, profile, user, response, file, targetDirectory);
 					});
+					unzipper.extract({ path: targetDirectory });
 				} else {
 					response.status(400).send(`${file[ 'type' ]} is not an allowed file format. Only zip is allowed!`);
 				}
