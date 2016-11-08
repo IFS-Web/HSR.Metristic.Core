@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "description": "Metristic web application and plugin interfaces",
   "scripts": {
-    "deploy": "gulp deploy",
     "test": "gulp test",
     "gulp": "gulp",
     "typings": "typings"
@@ -39,6 +38,7 @@
     "rmdir": "^1.2.0"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
     "gulp-jasmine": "^2.4.0",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^2.3.2",
@@ -48,6 +48,8 @@
     "jasmine-node": "^1.14.5",
     "livereload": "^0.5.0",
     "node-sass": "^3.8.0",
-    "tslint": "^3.15.1"
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.8",
+    "typings": "^1.5.0"
   }
 }
