@@ -31,12 +31,14 @@ See [HSR.Metristic documentation: development](https://github.com/wasabidevelope
 
 Deploy app to directory `app`:
 ```shell
-gulp deploy
+npm run gulp deploy
+# or
+npm deploy
 ```
 
 Compile TS and run tests:
 ```shell
-gulp test
+npm run gulp test
 # or
 npm test
 ```
