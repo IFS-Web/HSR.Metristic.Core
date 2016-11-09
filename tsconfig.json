@@ -1,15 +1,14 @@
 {
-  "version": "1.8.0",
-  "compilerOptions": {
-	"module": "commonjs",
-	"declaration": true,
-	"outDir": "./app",
-	"rootDir": "./src",
-	"sourceMap": true,
-	"target": "es6"
-  },
-  "include": [
-	"./src/**/*",
-	"./typings/index.d.ts"
-  ]
+	"version": "1.7.0",
+	"compilerOptions": {
+		"module": "commonjs",
+		"declaration": true,
+		"outDir": "./app",
+		"sourceMap": true,
+		"target": "es6"
+	},
+	"include": [
+		"./src/**/*.ts",
+		"./typings/index.d.ts"
+	]
 }

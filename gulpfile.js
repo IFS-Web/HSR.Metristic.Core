@@ -1,12 +1,11 @@
 'use strict';
 
-let gulp = require('gulp'),
-	nodemon = require('gulp-nodemon'),
-	ts = require('gulp-typescript'),
-	sass = require('gulp-sass'),
-	sourcemaps = require('gulp-sourcemaps'),
-	jasmine = require('gulp-jasmine'),
-	tslint = require("gulp-tslint");
+let Gulp = require('gulp'),
+	TSC = require('gulp-typescript'),
+	SourceMaps = require('gulp-sourcemaps'),
+	Jasmine = require('gulp-jasmine'),
+	TsLint = require("gulp-tslint"),
+	Sass = require("gulp-sass");
 
 
 var CONFIGURATION = {
@@ -23,54 +22,52 @@ var STATIC_FILES = [ 'js', 'html', 'png', 'jpg', 'svg', 'css' ].map(
 );
 
 
-var tsProject = ts.createProject('tsconfig.json');
-gulp.task('typescript', function() {
-	var reporter = ts.reporter.defaultReporter();
-	var tsResult = tsProject.src().pipe(ts(tsProject(reporter)));
-	return tsResult.js.pipe(gulp.dest(tsProject.config.compilerOptions.outDir));
+var tsProject = TSC.createProject('tsconfig.json');
+Gulp.task('typescript', function() {
+	var compilerOptions = JSON.parse(JSON.stringify(tsProject.config.compilerOptions));
+	delete compilerOptions.outDir;
+
+	var tsResult = Gulp.src(tsProject.config.include)
+		.pipe(TSC(compilerOptions));
+
+    return tsResult.js.pipe(Gulp.dest(tsProject.config.compilerOptions.outDir));
 });
 
-gulp.task('tslint', function() {
-	gulp.src([CONFIGURATION.sourceDirectory + '/**/*.ts'])
-		.pipe(tslint(CONFIGURATION.tsLintConfig))
-		.pipe(tslint.report());
+Gulp.task('tslint', function() {
+	Gulp.src([CONFIGURATION.sourceDirectory + '/**/*.ts'])
+			.pipe(TsLint(CONFIGURATION.tsLintConfig))
+			.pipe(TsLint.report());
 });
 
-gulp.task('sass', function () {
-	return gulp.src(CONFIGURATION.sourceDirectoryAssets+'/**/*.scss')
-		.pipe(sourcemaps.init())
-		.pipe(sass().on('error', sass.logError))
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(CONFIGURATION.deploymentDirectoryAssets));
+Gulp.task('sass', function () {
+	return Gulp.src(CONFIGURATION.sourceDirectoryAssets+'/**/*.scss')
+		.pipe(SourceMaps.init())
+		.pipe(Sass().on('error', Sass.logError))
+		.pipe(SourceMaps.write())
+		.pipe(Gulp.dest(CONFIGURATION.deploymentDirectoryAssets));
 });
 
-gulp.task('watch', function() {
-	gulp.watch(CONFIGURATION.sourceDirectory+'/**/*.ts', ['typescript']);
-	gulp.watch(CONFIGURATION.sourceDirectoryAssets+'/**/*.scss', ['sass']);
-	gulp.watch(STATIC_FILES, ['deploy static']);
+Gulp.task('watch', function() {
+	Gulp.watch(CONFIGURATION.sourceDirectory+'/**/*.ts', ['typescript']);
+	Gulp.watch(CONFIGURATION.sourceDirectoryAssets+'/**/*.scss', ['sass']);
+	Gulp.watch(STATIC_FILES, ['deploy static']);
 });
 
-gulp.task('deploy', ['typescript', 'sass', 'deploy static'], function() {});
+Gulp.task('deploy', ['typescript', 'sass', 'deploy static'], function() {});
 
-gulp.task('serve', ['deploy', 'watch'], function() {
-	nodemon({
-		script: CONFIGURATION.deploymentDirectory+'/index.js',
-		ext: 'js html'
-	})
-});
-
-gulp.task('test', ['typescript', 'tslint'], function() {
-	return gulp.src([CONFIGURATION.deploymentDirectory+'/**/*.spec.js'])
-		.pipe(jasmine({
-			spec_dir: CONFIGURATION.deploymentDirectory
+Gulp.task('test', ['typescript', 'tslint'], function() {
+	return Gulp.src([CONFIGURATION.deploymentDirectory+'/**/*.spec.js'])
+		.pipe(Jasmine({
+			spec_dir: CONFIGURATION.deploymentDirectory,
+			includeStackTrace: true
 		}));
 });
 
-gulp.task('deploy static', [], function() {
-	return gulp.src(STATIC_FILES, {
+Gulp.task('deploy static', [], function() {
+	return Gulp.src(STATIC_FILES, {
 			base: CONFIGURATION.sourceDirectory
 		})
-		.pipe(gulp.dest(CONFIGURATION.deploymentDirectory));
+		.pipe(Gulp.dest(CONFIGURATION.deploymentDirectory));
 });
 
-gulp.task('default', ['serve']);
+Gulp.task('default', ['test']);

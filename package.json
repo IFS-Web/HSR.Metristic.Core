@@ -5,7 +5,8 @@
   "scripts": {
     "test": "gulp test",
     "gulp": "gulp",
-    "typings": "typings"
+    "typings": "typings",
+    "pack-release": "gulp deploy && (cd ../; zip -r HSR.Metristic.Core.zip HSR.Metristic.Core -x '.*' -x '*/.*' -x '*/node_modules/*' -x '*/src/*' -x '*/typings/*' -x '*/Dockerfile' -x '*/tsconfig.json' -x '*/tslint.json' -x '*/typings.json' -x '*/gulpfile.js'  -x '*/*.log')"
   },
   "main": "app/index.js",
   "typings": "src/index",
