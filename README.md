@@ -22,6 +22,22 @@ Metristic web application and plugin interfaces.
 * Run `npm install --production` to install the dependencies.
 
 
+## Usage
+
+Create a deployment/startup project and start the application there:
+```typescript
+import {Application} from "metristic-core";
+import {Profile} from "metristic-core";
+
+let profiles: { [name: string]: Profile } = require("../configuration/profiles");
+let appConfig: { [name: string]: any } = require("../configuration/app");
+
+
+let app = new Application(profiles, appConfig);
+app.start();
+```
+
+
 ## Development / build the project from source
 
 See [HSR.Metristic documentation: development](https://github.com/wasabideveloper/HSR.Metristic#development)
