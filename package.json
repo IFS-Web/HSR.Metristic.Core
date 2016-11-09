@@ -1,6 +1,6 @@
 {
   "name": "metristic-core",
-  "version": "0.2.0",
+  "version": "1.0.0-beta.1",
   "description": "Metristic web application and plugin interfaces",
   "scripts": {
     "test": "gulp test",
