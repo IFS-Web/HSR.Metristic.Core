@@ -11,7 +11,7 @@ Metristic web application and plugin interfaces.
 
 ## Releases / Production
 
-⬇ Download on the [Release page](https://github.com/wasabideveloper/HSR.Metristic.Core/releases)
+⬇ Download on the [Release page](https://github.com/IFS-Web/HSR.Metristic.Core/releases)
 
 
 ## Installation
@@ -40,7 +40,7 @@ app.start();
 
 ## Development / build the project from source
 
-See [HSR.Metristic documentation: development](https://github.com/wasabideveloper/HSR.Metristic#development)
+See [HSR.Metristic documentation: development](https://github.com/IFS-Web/HSR.Metristic#development)
 
 
 ### Commands
