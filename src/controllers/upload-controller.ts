@@ -36,16 +36,16 @@ export class UploadController {
 					email: fields['email']
 				};
 
-				let file = files[ 'archive' ];
-				if (file[ 'type' ] == 'application/zip') {
-					let unzipper = new DecompressZip(file[ 'path' ]);
-					unzipper.on('extract', () => {
-						this.execute(manager, profile, user, response, file, targetDirectory);
-					});
-					unzipper.extract({ path: targetDirectory });
-				} else {
-					response.status(400).send(`${file[ 'type' ]} is not an allowed file format. Only zip is allowed!`);
-				}
+				let file = files['archive'];
+
+				let unzipper = new DecompressZip(file['path']);
+				unzipper.on('extract', () => {
+					this.execute(manager, profile, user, response, file, targetDirectory);
+				});
+				unzipper.on('error', function (err) {
+					response.status(400).send(`Only zip is allowed: ${err}`);
+				});
+				unzipper.extract({path: targetDirectory});
 			}
 		});
 	}
