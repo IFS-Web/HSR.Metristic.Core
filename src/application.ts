@@ -8,6 +8,10 @@ let limits = require('limits');
 let Path = require('path');
 let FS = require('fs');
 
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
+
+
 import {UploadController} from "./controllers/upload-controller";
 import {formatDate} from "./views/helpers/moment-helper";
 import {Profile} from "./domain/model/profile";
@@ -93,8 +97,34 @@ export class Application {
 			}, []);
 	}
 
+	private getNumberOfForks() : number{
+		return Math.min(this.config["MAX_FORKS"] || 0, numCPUs || 1);
+	}
+
+
+
 	public start() {
-		this.app.listen(this.config['APP_PORT']);
-		console.log('Server running on http://localhost:' + this.config['APP_PORT']);
+		if (cluster.isMaster) {
+			// Fork workers.
+			for (var i = 0; i < this.getNumberOfForks(); i++) {
+				cluster.fork();
+			}
+
+			// If a worker dies, log it to the console and start another worker.
+			cluster.on('exit', function(worker, code, signal) {
+				console.log('Worker ' + worker.process.pid + ' died.');
+				setTimeout(() => cluster.fork(), 10000);
+			});
+
+			// Log when a worker starts listening
+			cluster.on('listening', function(worker, address) {
+				console.log('Worker started with PID ' + worker.process.pid + '.');
+			});
+
+		} else {
+
+			this.app.listen(this.config['APP_PORT']);
+			console.log('Server running on http://localhost:' + this.config['APP_PORT']);
+		}
 	}
 }
