@@ -5,8 +5,7 @@
   "scripts": {
     "test": "gulp test",
     "gulp": "gulp",
-    "typings": "typings",
-    "pack-release": "gulp deploy && (cd ../; zip -r HSR.Metristic.Core.zip HSR.Metristic.Core -x '.*' -x '*/.*' -x '*/node_modules/*' -x '*/src/*' -x '*/typings/*' -x '*/Dockerfile' -x '*/tsconfig.json' -x '*/tslint.json' -x '*/typings.json' -x '*/gulpfile.js'  -x '*/*.log')"
+    "pack-release": "gulp deploy && (cd ../; zip -r HSR.Metristic.Core.zip HSR.Metristic.Core -x '.*' -x '*/.*' -x '*/node_modules/*' -x '*/src/*' -x '*/Dockerfile' -x '*/tsconfig.json' -x '*/tslint.json' -x '*/gulpfile.js'  -x '*/*.log')"
   },
   "main": "app/index.js",
   "typings": "src/index",
@@ -51,6 +50,7 @@
     "node-sass": "^3.8.0",
     "tslint": "^3.15.1",
     "typescript": "^2.0.8",
-    "typings": "^1.5.0"
+    "@types/jasmine": "2.8.6",
+    "@types/node": "^8.9.1"
   }
 }
